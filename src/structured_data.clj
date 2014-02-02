@@ -61,7 +61,7 @@
     (assoc book :authors authors)))
 
 (defn alive? [author]
-  :-)
+  (nil? (get author :death-year)))
 
 (defn element-lengths [collection]
   :-)

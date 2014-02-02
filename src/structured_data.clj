@@ -64,7 +64,8 @@
   (nil? (get author :death-year)))
 
 (defn element-lengths [collection]
-  :-)
+  (let [countelement (fn [x] (count x))]
+    (map countelement collection)))
 
 (defn second-elements [collection]
   :-)

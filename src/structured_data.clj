@@ -110,7 +110,8 @@
     (str (get author :name) years)))
 
 (defn authors->string [authors]
-  :-)
+  (let [authorAsString (fn [author] (author->string author))]
+    (apply str (interpose ", " (map authorAsString authors)))))
 
 (defn book->string [book]
   :-)

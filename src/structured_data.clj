@@ -114,7 +114,7 @@
     (apply str (interpose ", " (map authorAsString authors)))))
 
 (defn book->string [book]
-  :-)
+  (str (get book :title) ", written by " (authors->string (get book :authors))))
 
 (defn books->string [books]
   :-)

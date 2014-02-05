@@ -104,7 +104,10 @@
     (set (map author-name (authors books)))))
 
 (defn author->string [author]
-  :-)
+  (let [years (if (contains? author :birth-year)
+                (str " (" (get author :birth-year) " - " (get author :death-year) ")")
+                )]
+    (str (get author :name) years)))
 
 (defn authors->string [authors]
   :-)

@@ -100,7 +100,8 @@
     (apply clojure.set/union (map authors books))))
 
 (defn all-author-names [books]
-  :-)
+  (let [author-name (fn [author] (get author :name))]
+    (set (map author-name (authors books)))))
 
 (defn author->string [author]
   :-)

@@ -72,7 +72,7 @@
     (map sec collection)))
 
 (defn titles [books]
-  (let [name (fn [x] (get x :title))]
+  (let [name (fn [book] (get book :title))]
     (map name books)))
 
 (defn monotonic? [a-seq]
@@ -96,7 +96,8 @@
   (contains? (get book :authors) author))
 
 (defn authors [books]
-  :-)
+  (let [authors (fn [book] (get book :authors))]
+    (apply clojure.set/union (map authors books))))
 
 (defn all-author-names [books]
   :-)

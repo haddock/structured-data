@@ -1,4 +1,5 @@
-(ns structured-data)
+(ns structured-data
+  (:require [clojure.set :as set]))
 
 (defn do-a-thing [x]
   (let [x (+ x x)]
@@ -44,8 +45,7 @@
 (defn contains-rectangle? [outer inner]
   (let [[x y] inner]
     (and (contains-point? outer x)
-         (contains-point? outer y)))
-  )
+         (contains-point? outer y))))
 
 (defn title-length [book]
   (count (get book :title)))
@@ -97,7 +97,7 @@
 
 (defn authors [books]
   (let [authors (fn [book] (get book :authors))]
-    (apply clojure.set/union (map authors books))))
+    (apply set/union (map authors books))))
 
 (defn all-author-names [books]
   (let [author-name (fn [author] (get author :name))]
@@ -117,7 +117,14 @@
   (str (get book :title) ", written by " (authors->string (get book :authors))))
 
 (defn books->string [books]
-  :-)
+  (if (empty? books)
+    (str "No books.")
+
+    (str (if (= 1 (count books))
+      (str "1 book. " (apply str (interpose ". " (map book->string books))) ".")
+      (str (count books) " books. " (apply str (interpose ". " (map book->string books))) ".")))))
+
+;(str (apply str (interpose ". " (map book->string books))) ".")
 
 (defn books-by-author [author books]
   :-)
